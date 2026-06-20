@@ -1,0 +1,57 @@
+{% extends 'complaints/base.html' %}
+{% load static %}
+{% block title %}Smart ISP Assistant | SpeedLink{% endblock %}
+{% block content %}
+<section class="page-hero container compact">
+    <span class="eyebrow">Smart ISP Assistant</span>
+    <h1>Get minor troubleshooting help before submitting a complaint.</h1>
+    <p>The assistant suggests issue category, priority and simple checks for common ISP problems.</p>
+</section>
+<section class="container assistant-layout">
+    <div class="chat-panel">
+        <div class="chat-header">
+            <div><strong>SpeedLink Assistant</strong><span>Online support</span></div>
+            <span class="online-dot"></span>
+        </div>
+        <div class="quick-actions">
+            <button type="button" data-message="My internet is not working">No Internet</button>
+            <button type="button" data-message="My Wi-Fi is very slow">Slow Speed</button>
+            <button type="button" data-message="Router red light is blinking">Router Issue</button>
+            <button type="button" data-message="I paid bill but internet is blocked">Billing</button>
+            <button type="button" data-message="Technician did not come">Technician Delay</button>
+            <button type="button" data-message="I want to track my complaint">Track</button>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="bot-message message">
+                Hello, I am the Smart ISP Support Assistant. Tell me your internet issue and I will suggest minor checks, complaint category and priority.
+            </div>
+        </div>
+        <form id="chatForm" class="chat-form">
+            {% csrf_token %}
+            <input type="text" id="chatInput" name="message" placeholder="Type your issue, e.g. my internet is slow" autocomplete="off">
+            <button type="submit" class="btn btn-primary small-btn">Send</button>
+        </form>
+    </div>
+    <aside class="assistant-side content-card">
+        <h2>What it can do</h2>
+        <ul class="check-list">
+            <li>Suggest minor troubleshooting steps</li>
+            <li>Recommend complaint category</li>
+            <li>Suggest priority level</li>
+            <li>Guide to complaint form</li>
+            <li>Explain tracking process</li>
+        </ul>
+        <div class="suggestion-box" id="suggestionBox">
+            <h3>Suggestion will appear here</h3>
+            <p>Ask about no internet, slow speed, router, billing, installation, package upgrade or technician delay.</p>
+        </div>
+    </aside>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script>
+    window.assistantReplyUrl = "{% url 'assistant_reply' %}";
+    window.submitComplaintUrl = "{% url 'submit_complaint' %}";
+</script>
+<script src="{% static 'complaints/js/assistant.js' %}"></script>
+{% endblock %}

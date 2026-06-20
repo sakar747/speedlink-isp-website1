@@ -1,0 +1,29 @@
+{% extends 'complaints/base.html' %}
+{% block title %}Support & Troubleshooting | SpeedLink{% endblock %}
+{% block content %}
+<section class="page-hero container compact">
+    <span class="eyebrow">Support / Troubleshooting</span>
+    <h1>Try minor checks before submitting a complaint.</h1>
+    <p>These simple support steps help customers solve small internet issues quickly.</p>
+</section>
+<section class="container cards two">
+    {% for item in troubleshooting %}
+    <article class="support-card">
+        <h3>{{ item.title }}</h3>
+        <ol>
+            {% for step in item.steps %}<li>{{ step }}</li>{% endfor %}
+        </ol>
+    </article>
+    {% endfor %}
+</section>
+<section class="container callout-row">
+    <div>
+        <h2>Still not solved?</h2>
+        <p>Use the Smart ISP Assistant for category and priority suggestions, or submit a complaint directly.</p>
+    </div>
+    <div class="callout-actions">
+        <a href="{% url 'assistant' %}" class="btn btn-primary">Ask Assistant</a>
+        <a href="{% url 'submit_complaint' %}" class="btn btn-outline">Submit Complaint</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'complaints/base.html' %}
+{% block title %}Staff Login | SpeedLink{% endblock %}
+{% block content %}
+<section class="login-section container">
+    <form method="post" class="content-card login-card">
+        {% csrf_token %}
+        <span class="eyebrow">Staff only</span>
+        <h1>Admin Login</h1>
+        <p>Use this area to manage customer complaints.</p>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="admin" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="admin123" required>
+        </div>
+        <button type="submit" class="btn btn-primary full-btn">Login</button>
+        <p class="hint">Demo login: <strong>admin</strong> / <strong>admin123</strong></p>
+    </form>
+</section>
+{% endblock %}

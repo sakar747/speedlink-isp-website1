@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SpeedLink Internet Services{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'complaints/css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar container">
+            <a href="{% url 'home' %}" class="logo" aria-label="SpeedLink home">
+                <span class="logo-icon">⌂</span>
+                <span>SpeedLink</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'services' %}">Services</a>
+                <a href="{% url 'packages' %}">Packages</a>
+                <a href="{% url 'support' %}">Support</a>
+                <a href="{% url 'assistant' %}">Assistant</a>
+                <a href="{% url 'faq' %}">FAQ</a>
+                <a href="{% url 'contact' %}">Contact</a>
+                <a class="nav-cta" href="{% url 'submit_complaint' %}">Submit Complaint</a>
+            </div>
+        </nav>
+    </header>
+
+    {% if messages %}
+        <div class="container flash-wrap">
+            {% for message in messages %}
+                <div class="flash {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <a href="{% url 'home' %}" class="logo footer-logo"><span class="logo-icon">⌂</span><span>SpeedLink</span></a>
+                <p>Reliable internet support for homes, students and local businesses.</p>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <a href="{% url 'assistant' %}">Smart ISP Assistant</a>
+                <a href="{% url 'submit_complaint' %}">Submit Complaint</a>
+                <a href="{% url 'track_complaint' %}">Track Complaint</a>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'services' %}">Services</a>
+                <a href="{% url 'packages' %}">Packages</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>support@speedlink.local</p>
+                <p>+977-9800000000</p>
+                <a href="{% url 'staff_login' %}">Staff Login</a>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 SpeedLink Internet Services. Academic prototype.</div>
+    </footer>
+
+    <script src="{% static 'complaints/js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

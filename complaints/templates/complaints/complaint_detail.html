@@ -1,0 +1,52 @@
+{% extends 'complaints/base.html' %}
+{% block title %}Complaint Detail | SpeedLink{% endblock %}
+{% block content %}
+<section class="admin-header container">
+    <div>
+        <span class="eyebrow">Complaint detail</span>
+        <h1>{{ complaint.reference_number }}</h1>
+        <p>{{ complaint.title }}</p>
+    </div>
+    <a href="{% url 'admin_dashboard' %}" class="btn btn-outline">Back to Dashboard</a>
+</section>
+<section class="container detail-layout">
+    <div class="content-card">
+        <h2>Customer and Complaint Details</h2>
+        <div class="detail-grid large">
+            <div><span>Full Name</span><strong>{{ complaint.full_name }}</strong></div>
+            <div><span>Email</span><strong>{{ complaint.email }}</strong></div>
+            <div><span>Phone</span><strong>{{ complaint.phone }}</strong></div>
+            <div><span>Customer ID</span><strong>{{ complaint.customer_id|default:'Not provided' }}</strong></div>
+            <div><span>Address / Area</span><strong>{{ complaint.address_area }}</strong></div>
+            <div><span>Preferred Contact</span><strong>{{ complaint.preferred_contact }}</strong></div>
+            <div><span>Category</span><strong>{{ complaint.category }}</strong></div>
+            <div><span>Priority</span><strong>{{ complaint.priority }}</strong></div>
+            <div><span>Status</span><strong>{{ complaint.status }}</strong></div>
+            <div><span>Submitted</span><strong>{{ complaint.created_at|date:"d M Y, h:i A" }}</strong></div>
+        </div>
+        <h3>Description</h3>
+        <p class="description-box">{{ complaint.description }}</p>
+        {% if complaint.admin_note %}
+        <h3>Admin Note</h3>
+        <p class="description-box">{{ complaint.admin_note }}</p>
+        {% endif %}
+    </div>
+    <form method="post" action="{% url 'update_complaint' complaint.reference_number %}" class="content-card update-card">
+        {% csrf_token %}
+        <h2>Update Complaint</h2>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select name="status" id="status">
+                {% for value, label in complaint.STATUS_CHOICES %}
+                <option value="{{ value }}" {% if complaint.status == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="admin_note">Admin Note</label>
+            <textarea name="admin_note" id="admin_note" rows="6" placeholder="Add update note for customer tracking">{{ complaint.admin_note }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary full-btn">Save Update</button>
+    </form>
+</section>
+{% endblock %}

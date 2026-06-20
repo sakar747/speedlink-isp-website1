@@ -1,0 +1,21 @@
+{% extends 'complaints/base.html' %}
+{% block title %}Complaint Submitted | SpeedLink{% endblock %}
+{% block content %}
+<section class="container success-page">
+    <div class="content-card success-card">
+        <span class="success-icon">✓</span>
+        <h1>Your complaint has been submitted successfully.</h1>
+        <p>Please save this reference number to track your complaint status.</p>
+        <div class="reference-box">{{ complaint.reference_number }}</div>
+        <div class="summary-grid">
+            <div><span>Category</span><strong>{{ complaint.category }}</strong></div>
+            <div><span>Priority</span><strong>{{ complaint.priority }}</strong></div>
+            <div><span>Status</span><strong>{{ complaint.status }}</strong></div>
+        </div>
+        <div class="hero-actions center">
+            <a href="{% url 'track_complaint' %}" class="btn btn-primary">Track Complaint</a>
+            <a href="{% url 'home' %}" class="btn btn-outline">Back Home</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

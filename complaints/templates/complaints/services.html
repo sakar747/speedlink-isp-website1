@@ -1,0 +1,18 @@
+{% extends 'complaints/base.html' %}
+{% block title %}Services | SpeedLink{% endblock %}
+{% block content %}
+<section class="page-hero container compact">
+    <span class="eyebrow">Our services</span>
+    <h1>Internet services and support for local customers.</h1>
+    <p>SpeedLink provides common ISP services and quick online complaint support.</p>
+</section>
+<section class="container cards three">
+    {% for item in services_list %}
+    <article class="service-card">
+        <span class="service-icon">{{ item.icon }}</span>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

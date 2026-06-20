@@ -1,0 +1,29 @@
+{% extends 'complaints/base.html' %}
+{% block title %}Contact | SpeedLink{% endblock %}
+{% block content %}
+<section class="page-hero container compact">
+    <span class="eyebrow">Contact SpeedLink</span>
+    <h1>Have a question? Contact our support team.</h1>
+    <p>For urgent internet complaints, use the complaint form and keep your reference number.</p>
+</section>
+<section class="container contact-layout">
+    <div class="content-card contact-info">
+        <h2>Contact details</h2>
+        <p><strong>Phone:</strong> +977-9800000000</p>
+        <p><strong>Email:</strong> support@speedlink.local</p>
+        <p><strong>Office:</strong> Kathmandu, Nepal</p>
+        <p><strong>Support:</strong> 24/7 complaint and tracking support</p>
+    </div>
+    <form method="post" class="content-card form-card">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}<small class="error-text">{{ field.errors|striptags }}</small>{% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+</section>
+{% endblock %}

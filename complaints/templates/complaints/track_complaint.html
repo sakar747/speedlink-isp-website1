@@ -1,0 +1,36 @@
+{% extends 'complaints/base.html' %}
+{% block title %}Track Complaint | SpeedLink{% endblock %}
+{% block content %}
+<section class="page-hero container compact">
+    <span class="eyebrow">Track complaint</span>
+    <h1>Check your complaint progress using reference number.</h1>
+    <p>Enter your reference number exactly as shown after complaint submission.</p>
+</section>
+<section class="container tracking-layout">
+    <form method="post" class="content-card tracking-form">
+        {% csrf_token %}
+        <label for="reference_number">Complaint Reference Number</label>
+        <input type="text" id="reference_number" name="reference_number" placeholder="e.g. ISP-2026-AB12CD" value="{{ reference }}" required>
+        <button type="submit" class="btn btn-primary">Track Complaint</button>
+    </form>
+    <div class="content-card tracking-result">
+        {% if complaint %}
+            <span class="status-pill status-{{ complaint.status|lower|cut:' ' }}">{{ complaint.status }}</span>
+            <h2>{{ complaint.title }}</h2>
+            <div class="detail-grid">
+                <div><span>Reference</span><strong>{{ complaint.reference_number }}</strong></div>
+                <div><span>Category</span><strong>{{ complaint.category }}</strong></div>
+                <div><span>Priority</span><strong>{{ complaint.priority }}</strong></div>
+                <div><span>Submitted</span><strong>{{ complaint.created_at|date:"d M Y, h:i A" }}</strong></div>
+            </div>
+            {% if complaint.admin_note %}<p class="admin-note"><strong>Admin note:</strong> {{ complaint.admin_note }}</p>{% endif %}
+        {% elif searched %}
+            <h2>No complaint found</h2>
+            <p>No complaint was found with this reference number. Please check and try again.</p>
+        {% else %}
+            <h2>Complaint status will appear here</h2>
+            <p>Use your reference number to see current status such as Pending, In Progress, Technician Assigned, Resolved or Closed.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

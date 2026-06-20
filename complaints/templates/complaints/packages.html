@@ -1,0 +1,23 @@
+{% extends 'complaints/base.html' %}
+{% block title %}Packages | SpeedLink{% endblock %}
+{% block content %}
+<section class="page-hero container compact">
+    <span class="eyebrow">Internet packages</span>
+    <h1>Choose a package that fits your internet needs.</h1>
+    <p>These package cards make the system feel like a complete ISP website.</p>
+</section>
+<section class="container cards four">
+    {% for plan in plans %}
+    <article class="plan-card {% if plan.tag == 'Popular' %}featured{% endif %}">
+        <span class="plan-badge">{{ plan.tag }}</span>
+        <h3>{{ plan.speed }}</h3>
+        <p>{{ plan.name }}</p>
+        <strong>{{ plan.price }} / month</strong>
+        <ul>
+            {% for feature in plan.features %}<li>{{ feature }}</li>{% endfor %}
+        </ul>
+        <a href="{% url 'contact' %}" class="btn {% if plan.tag == 'Popular' %}btn-primary small-btn{% else %}btn-outline{% endif %}">Enquire Now</a>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

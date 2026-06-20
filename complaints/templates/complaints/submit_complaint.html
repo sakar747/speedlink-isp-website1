@@ -1,0 +1,27 @@
+{% extends 'complaints/base.html' %}
+{% block title %}Submit Complaint | SpeedLink{% endblock %}
+{% block content %}
+<section class="page-hero container compact">
+    <span class="eyebrow">Submit complaint</span>
+    <h1>Tell us your internet issue clearly.</h1>
+    <p>After submission, you will receive a unique complaint reference number for tracking.</p>
+</section>
+<section class="container form-shell">
+    <form method="post" class="content-card form-card" novalidate>
+        {% csrf_token %}
+        <div class="form-grid">
+            {% for field in form %}
+            <div class="form-group {% if field.name == 'description' %}span-2{% endif %}">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}<small class="error-text">{{ field.errors|striptags }}</small>{% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit Complaint</button>
+            <a href="{% url 'assistant' %}" class="btn btn-outline">Ask Assistant First</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'complaints/base.html' %}
+{% block title %}FAQ | SpeedLink{% endblock %}
+{% block content %}
+<section class="page-hero container compact">
+    <span class="eyebrow">Frequently asked questions</span>
+    <h1>Common questions about internet support and complaints.</h1>
+</section>
+<section class="container faq-list">
+    {% for question, answer in faqs %}
+    <details class="content-card faq-item">
+        <summary>{{ question }}</summary>
+        <p>{{ answer }}</p>
+    </details>
+    {% endfor %}
+</section>
+{% endblock %}

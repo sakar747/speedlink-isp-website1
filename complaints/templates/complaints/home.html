@@ -1,0 +1,113 @@
+{% extends 'complaints/base.html' %}
+{% block title %}SpeedLink Internet Services | Home{% endblock %}
+{% block content %}
+<section class="hero container">
+    <div class="hero-copy">
+        <span class="eyebrow">Local ISP support website</span>
+        <h1>Make your internet support <span>easier</span> with SpeedLink.</h1>
+        <p>Submit internet complaints, get smart troubleshooting guidance and track your complaint progress from one simple website.</p>
+        <div class="hero-actions">
+            <a href="{% url 'submit_complaint' %}" class="btn btn-primary">Submit Complaint</a>
+            <a href="{% url 'assistant' %}" class="btn btn-soft">Ask Assistant</a>
+            <a href="{% url 'track_complaint' %}" class="btn btn-link">Track Status</a>
+        </div>
+        <div class="app-rating">
+            <span>★ ★ ★ ★ ★</span>
+            <strong>4.9</strong>
+            <small>Customer support rating</small>
+        </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+        <div class="blue-orbit"></div>
+        <div class="phone-mockup tilted">
+            <div class="phone-top"></div>
+            <div class="phone-screen">
+                <div class="screen-line wide"></div>
+                <div class="screen-card blue">Complaint status<br><strong>Technician Assigned</strong></div>
+                <div class="screen-card">Reference<br><strong>ISP-2026-AB12CD</strong></div>
+                <div class="screen-line"></div>
+                <div class="mini-grid"><span></span><span></span><span></span><span></span></div>
+            </div>
+        </div>
+        <span class="cube cube-one"></span>
+        <span class="cube cube-two"></span>
+        <span class="bubble bubble-one"></span>
+    </div>
+</section>
+
+<section class="container split-section">
+    <div class="phone-stage" aria-hidden="true">
+        <div class="phone-mockup small left-tilt">
+            <div class="phone-top"></div>
+            <div class="phone-screen">
+                <div class="chart-bars"><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="screen-line wide"></div>
+                <div class="screen-line"></div>
+                <div class="screen-line short"></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <span class="eyebrow">Why choose SpeedLink?</span>
+        <h2>Built for quick ISP complaint support.</h2>
+        <div class="feature-list">
+            <article>
+                <span class="feature-icon">📊</span>
+                <div><h3>Manage complaints online</h3><p>Customers can submit and track complaints without repeated phone calls.</p></div>
+            </article>
+            <article>
+                <span class="feature-icon">🤖</span>
+                <div><h3>Smart support assistant</h3><p>The chatbot suggests minor fixes, complaint category and priority level.</p></div>
+            </article>
+            <article>
+                <span class="feature-icon">🎧</span>
+                <div><h3>Always ready to help</h3><p>Support pages guide customers through common internet problems.</p></div>
+            </article>
+            <article>
+                <span class="feature-icon">📶</span>
+                <div><h3>ISP-focused categories</h3><p>No connection, slow speed, router, billing and technician delay are handled clearly.</p></div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="container package-preview">
+    <div class="section-heading">
+        <span class="eyebrow">Special offer for you</span>
+        <h2>Simple internet packages</h2>
+        <p>Package cards are included to make the site look like a normal ISP business website.</p>
+    </div>
+    <div class="cards three">
+        <article class="plan-card">
+            <span class="plan-badge">Home</span>
+            <h3>25 Mbps</h3>
+            <p>For students and daily browsing</p>
+            <strong>Rs. 999 / month</strong>
+            <a href="{% url 'packages' %}" class="btn btn-outline">View Package</a>
+        </article>
+        <article class="plan-card featured">
+            <span class="plan-badge">Popular</span>
+            <h3>50 Mbps</h3>
+            <p>For families and streaming</p>
+            <strong>Rs. 1,499 / month</strong>
+            <a href="{% url 'packages' %}" class="btn btn-primary small-btn">View Package</a>
+        </article>
+        <article class="plan-card">
+            <span class="plan-badge">Business</span>
+            <h3>150 Mbps</h3>
+            <p>For offices and local businesses</p>
+            <strong>Rs. 3,999 / month</strong>
+            <a href="{% url 'packages' %}" class="btn btn-outline">View Package</a>
+        </article>
+    </div>
+</section>
+
+<section class="container question-banner">
+    <div>
+        <h2>Have a question?</h2>
+        <p>Our Smart ISP Assistant is ready to help with slow speed, router, billing and complaint tracking questions.</p>
+    </div>
+    <a href="{% url 'assistant' %}" class="btn btn-white">Ask Us</a>
+    <span class="banner-cube"></span>
+</section>
+{% endblock %}
